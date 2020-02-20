@@ -13,6 +13,8 @@ if(is_post_request()){
 
 $result = insert_page($page);
 if($result === true){
+  $_SESSION['message'] = "this subject was created sucessfullly";
+
   $new_id = mysqli_insert_id($db);
   redirect_to($path."staff/pages/show.php?id='".$new_id."'");
 

@@ -19,6 +19,8 @@ if(is_post_request()){
   $page['id'] = $id;
   $result = update_page($page);
   if($result===true){
+    $_SESSION['message'] = "this subject was created sucessfullly";
+
   redirect_to($path."staff/pages/show.php?id=".$id);
 }else{
   $errors= $result;
@@ -100,7 +102,7 @@ if(is_post_request()){
     </dl>
     <dl>
       <dt>content</dt>
-      <dd><textarea></textarea></dd>
+      <dd><textarea name="content"><?php echo $page['content']; ?></textarea></dd>
     </dl>
     <div id="operations">
         <input type="submit" value="Edit page">

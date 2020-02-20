@@ -17,6 +17,11 @@
     </header>
     <nav>
       <ul>
+        <li>user: <?php echo $_SESSION['username'] ?? ''; ?></li>
         <li><a href="<?php echo '/globe_bank/public/staff/index.php'; ?>">Menu</a></li>
+        <li><a href="<?php echo '/globe_bank/public/staff/logout.php'; ?>">logout</a></li>
+
       </ul>
     </nav>
+
+<?php echo display_session_message(); ?>

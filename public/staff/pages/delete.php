@@ -10,6 +10,8 @@ $id= $_GET['id'];
 if(is_post_request()){
 
   $result = delete_page($id);
+  $_SESSION['message'] = "this subject was created sucessfullly";
+
   redirect_to($path.'staff/pages/index.php');
 }else{
   $page = find_page_by_id($id);

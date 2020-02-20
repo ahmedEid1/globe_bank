@@ -1,9 +1,15 @@
 <?php
 
-  function find_all_subjects(){
+  function find_all_subjects($options=[]){
     global $db;
 
+    $visible = $options['visible'] ?? false;
+
+
     $sql = "SELECT * FROM subjects ";
+    if($visible){
+      $sql .= "where visible = true ";
+    }
     $sql .= "ORDER BY position ASC";
 
     $result = mysqli_query($db, $sql);
@@ -11,11 +17,16 @@
     return $result;
   }
 
-  function find_subject_by_id($id){
+  function find_subject_by_id($id, $options=[]){
     global $db;
+
+    $visible = $options['visible'] ?? false;
 
     $sql = "SELECT * FROM subjects ";
     $sql .= "WHERE id='".db_escape($db,$id)."'";
+    if($visible){
+      $sql .= "AND visible = true";
+    }
     $result = mysqli_query($db, $sql);
     confirm_result_set($result);
     $subject = mysqli_fetch_assoc($result);
@@ -135,11 +146,16 @@ function delete_subject($id){
     return $result;
   }
 
-function find_page_by_id($id){
+function find_page_by_id($id, $options=[]){
   global $db;
+
+  $visible = $options['visible'] ?? false;
 
   $sql = "SELECT * FROM pages ";
   $sql .= "WHERE ID='".db_escape($db,$id)."'";
+  if($visible){
+    $sql .=  " AND visible = true ";
+  }
   $result = mysqli_query($db,$sql);
   confirm_result_set($result);
   $page = mysqli_fetch_assoc($result);
@@ -194,7 +210,7 @@ function update_page($page){
   $sql .= "WHERE id='".db_escape($db,$page['id'])."' ";
   $sql .= "LIMIT 1";
 
-  $resut = mysqli_query($db, $sql);
+  $result = mysqli_query($db, $sql);
 
   if ($result) {
     return true;
@@ -265,6 +281,22 @@ function validate_page($page){
 
 
 
+function find_pages_by_subject_id($subject_id, $options=[]){
+  global $db;
+
+  $visible = $options['visible'] ?? false;
+
+  $sql = "SELECT * FROM pages ";
+  $sql .= "WHERE subject_id='".db_escape($db,$subject_id)."'";
+  if($visible){
+    $sql .= " AND visible = true ";
+  }
+  $sql .= " ORDER BY position ASC";
+
+  $result = mysqli_query($db,$sql);
+  confirm_result_set($result);
+  return $result;
+}
 
 
 

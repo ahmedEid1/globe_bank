@@ -11,6 +11,7 @@ $id =$_GET['id'];
 
 if(is_post_request()){
  delete_subject($id);
+ $_SESSION['message'] = "this subject was created sucessfullly";
 
  redirect_to($path."staff/subjects/index.php");
 

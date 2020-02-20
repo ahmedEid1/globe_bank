@@ -15,6 +15,8 @@ $subject['visible'] = $_POST['visible'] ?? '';
 
 $result = update_subject($subject);
 if($result === true){
+  $_SESSION['message'] = "this subject was created sucessfullly";
+
     redirect_to( $path."staff/subjects/show.php?id=".$id);
 }else{
   $errors = $result;

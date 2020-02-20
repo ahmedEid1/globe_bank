@@ -115,3 +115,15 @@ dt {
   margin-bottom: 0;
   padding-left: 1em;
 }
+
+
+
+
+
+#message{
+  color: #0055dd;
+  background: white;
+  padding: 2px solid #0055dd;
+  margin: 1em 30px;
+  width: 890px;
+}

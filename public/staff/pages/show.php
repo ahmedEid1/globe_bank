@@ -19,6 +19,13 @@
 
       <h1>Page: <?php echo h($page['menu_name']); ?></h1>
 
+      <div class="actions">
+        <a href="<?php echo $path."index.php?id=".h(u($page['id']))."&preview=true" ;?>"
+          class="action" target="_blank"
+          >Preview</a>
+
+      </div>
+
       <div class="attributes">
         <?php $subject =find_subject_by_id($page["subject_id"]); ?>
         <dl>
